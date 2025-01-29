@@ -7,24 +7,59 @@ namespace DesafioAutoMind.Services
     public static class UserService
     {
         // Função para cadastrar um novo usuário
-        public static void CadastrarUsuario(List<User> users)
+        public static void RegisterUsers(List<User> users)
         {
             Console.WriteLine("\nCadastro de Usuário");
 
-            Console.Write("Digite o nome: ");
-            string name = Console.ReadLine();
+           
+            string name = string.Empty;
+            bool isNameValid = false;
 
-            Console.Write("Digite o e-mail: ");
-            string email = Console.ReadLine();
+            while(!isNameValid)
+            {
+                Console.Write("Digite o nome: ");
+                name = Console.ReadLine();
+
+                if (name == null || name.Length >= 3) 
+                {
+                    isNameValid = true; // Nome é válido
+                }
+                else
+                {
+                    Console.WriteLine("Nome inválido. O nome deve ter pelo menos 3 caracteres.");
+                }
+            }
+
+            string email = string.Empty;
+            bool isEmailValid = false;
+
+            while (!isEmailValid)
+            {
+                Console.Write("Digite o e-mail: ");
+                email = Console.ReadLine();
+
+                // Verifica se o e-mail contém "@" e "."
+                if (email.Contains("@") && email.Contains("."))
+                {
+                    isEmailValid = true; // E-mail é válido
+                }
+                else
+                {
+                    Console.WriteLine("E-mail inválido.");
+                }
+            }
 
             Console.Write("Digite a idade: ");
             int age;
-            while (!int.TryParse(Console.ReadLine(), out age) || age < 0)
+            // Loop que valida a entrada do usuário. Tenta converter a string para um int, retornando true se for bem sucedida 
+            // e false se falhar (Um usuário digitar algo diferente de um número)
+            while (!int.TryParse(Console.ReadLine(), out age) || age <= 0) 
             {
-                Console.WriteLine("Idade inválida. Por favor, insira um número válido.");
+                Console.WriteLine("Idade inválida.");
                 Console.Write("Digite a idade: ");
             }
 
+            // Instancia um novo usuário e insere na lista de usuários
             User user = new User(name, email, age);
             users.Add(user);
 
@@ -32,7 +67,7 @@ namespace DesafioAutoMind.Services
         }
 
         // Função para listar os usuários cadastrados
-        public static void ListarUsuarios(List<User> users)
+        public static void ListUsers(List<User> users)
         {
             Console.WriteLine("\nLista de Usuários:");
 
@@ -42,6 +77,7 @@ namespace DesafioAutoMind.Services
                 return;
             }
 
+            // Percorre(itera) os elementos na lista users, para cada usuário na lista, será executado o bloco
             foreach (var user in users)
             {
                 Console.WriteLine(user);
@@ -49,19 +85,19 @@ namespace DesafioAutoMind.Services
         }
 
         // Função para buscar um usuário pelo nome
-        public static void BuscarUsuario(List<User> users)
+        public static void SearchUsers(List<User> users)
         {
             Console.WriteLine("\nBuscar Usuário");
 
             Console.Write("Digite o nome do usuário: ");
-            string nomeBusca = Console.ReadLine();
+            string searchName = Console.ReadLine();
 
-            var usuarioEncontrado = users.Find(u => u.Name.Equals(nomeBusca, StringComparison.OrdinalIgnoreCase));
+            var userFound = users.Find(u => u.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
 
-            if (usuarioEncontrado != null)
+            if (userFound != null)
             {
                 Console.WriteLine("\nUsuário encontrado:");
-                Console.WriteLine(usuarioEncontrado);
+                Console.WriteLine(userFound);
             }
             else
             {

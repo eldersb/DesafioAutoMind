@@ -12,3 +12,4 @@ C:\Users\elder.borges\Documents\elder - IMPERIAL HONDA\DesafioAutoMind\obj\Debug
 C:\Users\elder.borges\Documents\elder - IMPERIAL HONDA\DesafioAutoMind\obj\Debug\net8.0\DesafioAutoMind.pdb
 C:\Users\elder.borges\Documents\elder - IMPERIAL HONDA\DesafioAutoMind\obj\Debug\net8.0\DesafioAutoMind.genruntimeconfig.cache
 C:\Users\elder.borges\Documents\elder - IMPERIAL HONDA\DesafioAutoMind\obj\Debug\net8.0\ref\DesafioAutoMind.dll
+C:\Users\elder.borges\Documents\elder - IMPERIAL HONDA\DesafioAutoMind\obj\Debug\net8.0\DesafioAutoMind.sourcelink.json

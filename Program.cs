@@ -3,7 +3,6 @@ using DesafioAutoMind.Entities;
 using System.Collections.Generic;
 using DesafioAutoMind.Services;
 
-
 class Program
 {
     static List<User> users = new List<User>();
@@ -13,24 +12,24 @@ class Program
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Menu:");
+            Console.WriteLine("Bem vindo ao menu de cadastro de usuários!");
             Console.WriteLine("1 - Cadastrar Usuário");
             Console.WriteLine("2 - Listar Usuários");
             Console.WriteLine("3 - Buscar Usuário");
             Console.WriteLine("0 - Sair");
             Console.Write("Escolha uma opção: ");
-            string opcao = Console.ReadLine();
+            string option = Console.ReadLine();
 
-            switch (opcao)
+            switch (option)
             {
                 case "1":
-                    UserService.CadastrarUsuario(users);
+                    UserService.RegisterUsers(users);
                     break;
                 case "2":
-                    UserService.ListarUsuarios(users);
+                    UserService.ListUsers(users);
                     break;
                 case "3":
-                    UserService.BuscarUsuario(users);
+                    UserService.SearchUsers(users);
                     break;
                 case "0":
                     return;
