@@ -2,8 +2,8 @@
 
 Esse repositório contém o desafio proposto para candidatura a vaga de Estágio em Desenvolvimento, da empresa AutoMind.
 
-## Desafio
-Case de Desenvolvimento em C# e .NET
+## Desafio proposto:
+Case de Desenvolvimento em C# e .NET \n
 Você deve desenvolver uma aplicação simples de console em C# que execute as seguintes tarefas:
 
 **Cadastro de Usuários:**
