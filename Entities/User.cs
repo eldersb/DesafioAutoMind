@@ -16,7 +16,7 @@ namespace DesafioAutoMind.Entities
 
         public override string ToString()
         {
-            return $"Nome: {Name}, E-mail: {Email}, Idade: {Age}";
+            return $"Nome: {Name}{Environment.NewLine}E-mail: {Email}{Environment.NewLine}Idade: {Age}{Environment.NewLine}";
         }
 
     }

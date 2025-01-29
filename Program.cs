@@ -5,6 +5,7 @@ using DesafioAutoMind.Services;
 
 class Program
 {
+    // Declaração da lista de usuários
     static List<User> users = new List<User>();
 
     static void Main(string[] args)
@@ -39,6 +40,8 @@ class Program
             }
 
             Console.WriteLine("Pressione uma tecla para continuar...");
+
+            // Pausa o programa e espera uma tecla do usuário para continuar
             Console.ReadKey();
         }
     }

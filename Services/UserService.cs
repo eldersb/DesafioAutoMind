@@ -11,52 +11,74 @@ namespace DesafioAutoMind.Services
         {
             Console.WriteLine("\nCadastro de Usuário");
 
-           
             string name = string.Empty;
-            bool isNameValid = false;
-
-            while(!isNameValid)
+            while (true)
             {
-                Console.Write("Digite o nome: ");
-                name = Console.ReadLine();
+                try
+                {
+                    Console.Write("Digite o nome: ");
+                    name = Console.ReadLine();
 
-                if (name == null || name.Length >= 3) 
-                {
-                    isNameValid = true; // Nome é válido
+                    // Verifica se já existe um usuário com o mesmo nome
+                    if (users.Exists(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        throw new ArgumentException("Já existe um usuário cadastrado com esse nome.");
+                    }
+
+                    // Verifica se o nome é nulo ou menor que três
+                    if (string.IsNullOrEmpty(name) || name.Length < 3)
+                    {
+                        throw new ArgumentException("O nome deve ter pelo menos 3 caracteres.");
+                    }
+                    break; // Se não ocorrer exceção, o nome é válido
                 }
-                else
+                catch (ArgumentException ex)
                 {
-                    Console.WriteLine("Nome inválido. O nome deve ter pelo menos 3 caracteres.");
+                    Console.WriteLine(ex.Message);
                 }
             }
 
             string email = string.Empty;
-            bool isEmailValid = false;
-
-            while (!isEmailValid)
+            while (true)
             {
-                Console.Write("Digite o e-mail: ");
-                email = Console.ReadLine();
+                try
+                {
+                    Console.Write("Digite o e-mail: ");
+                    email = Console.ReadLine();
 
-                // Verifica se o e-mail contém "@" e "."
-                if (email.Contains("@") && email.Contains("."))
-                {
-                    isEmailValid = true; // E-mail é válido
+                    // Verifica se o email contém '@' e '.'
+                    if (!email.Contains("@") || !email.Contains("."))
+                    {
+                        throw new ArgumentException("E-mail inválido.");
+                    }
+                    break; // Se não ocorrer exceção, o e-mail é válido
                 }
-                else
+                catch (ArgumentException ex)
                 {
-                    Console.WriteLine("E-mail inválido.");
+                    Console.WriteLine(ex.Message);
                 }
             }
 
-            Console.Write("Digite a idade: ");
             int age;
-            // Loop que valida a entrada do usuário. Tenta converter a string para um int, retornando true se for bem sucedida 
-            // e false se falhar (Um usuário digitar algo diferente de um número)
-            while (!int.TryParse(Console.ReadLine(), out age) || age <= 0) 
+            while (true)
             {
-                Console.WriteLine("Idade inválida.");
-                Console.Write("Digite a idade: ");
+                try
+                {
+                    Console.Write("Digite a idade: ");
+                    string input = Console.ReadLine();
+
+                    // Converte o input para um int, sendo que essa conversão só será true se ela falhar
+                    // (input não for um número inteiro válido)
+                    if (!int.TryParse(input, out age) || age <= 0)
+                    {
+                        throw new ArgumentException("Idade inválida. A idade deve ser um número positivo.");
+                    }
+                    break; // Se não ocorrer exceção, a idade é válida
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             // Instancia um novo usuário e insere na lista de usuários
@@ -77,7 +99,7 @@ namespace DesafioAutoMind.Services
                 return;
             }
 
-            // Percorre(itera) os elementos na lista users, para cada usuário na lista, será executado o bloco
+            // Itera sobre cada usuário na lista
             foreach (var user in users)
             {
                 Console.WriteLine(user);
@@ -92,6 +114,8 @@ namespace DesafioAutoMind.Services
             Console.Write("Digite o nome do usuário: ");
             string searchName = Console.ReadLine();
 
+            // Compara o nome de cada usuário com o fornecido pelo 'searchName' ignorando diferença entre
+            // maiúsculas e minúsculas.
             var userFound = users.Find(u => u.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
 
             if (userFound != null)
